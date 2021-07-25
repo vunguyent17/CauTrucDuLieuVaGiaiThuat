@@ -19,12 +19,12 @@ int DemSoPhanTuX(int* a, int n, int x);
 
 int main()
 {
-	int* a;
-	int n;
+	int* a;		//Mang a cac so nguyen
+	int n;		//So luong cac phan tu trong mang
 
-	int c;
-	int temp;
-	int x;
+	int c;		//Cac lua chon yeu cau chuong trinh
+	int temp;	//Bien phu
+	int x;		//So nguyen nguoi dung nhap de tim kiem trong mang
 
 	//a.Xuat mang 1 chieu noi tren ra man hinh.
 	Nhap(a, n);
@@ -64,7 +64,7 @@ int main()
 			int k;
 			do
 			{
-				cout << "Ban muon xoa phan tu thu may? Chon mot so tu 0 den " << n << ": ";
+				cout << "Ban muon xoa phan tu thu may? Chon mot so tu 0 den " << n-1 << ": ";
 				cin >> k;
 				if (k < 0 || k >= n)
 				{
@@ -73,6 +73,7 @@ int main()
 			} while (k < 0 || k >= n);
 
 			XoaPhanTu(a, n, k);
+			cout << "Da xoa mot phan tu trong mang." << endl;
 			Xuat(a, n);
 			break;
 		case 2:
@@ -151,8 +152,16 @@ int main()
 
 void Nhap(int*& a, int& n)
 {
-	cout << "Nhap so luong phan tu cua mang: ";
-	cin >> n;
+	do
+	{
+		cout << "Nhap so luong phan tu cua mang: ";
+		cin >> n;
+		if (n<=0)
+		{
+			cout << "So luong phan tu cua mang phai la mot so duong. Xin hay nhap lai." << endl;
+		}
+	} while (n<=0);
+	
 	a = new int[n];
 	for (int i = 0; i < n; i++)
 	{
