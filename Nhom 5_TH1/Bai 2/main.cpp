@@ -49,7 +49,7 @@ int main()
 	char k;
 	do
 	{
-		cout <<"==== Lua chon: ==="
+		cout <<"\n==== Lua chon: ==="
 			"\na.In danh sach sinh vien ra man hinh"
 			"\nb.Liet ke nhung sinh vien co diem trung binh cao nhat trong lop hoc."
 			"\nc.Cho biet so sinh vien co diem trung binh >= 5."

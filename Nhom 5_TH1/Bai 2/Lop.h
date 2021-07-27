@@ -188,7 +188,7 @@ public:
 		SinhVien* temp;
 		temp = sHead;
 		bool flag = 0;
-		cout << "\nNhap ma sinvien can xoa: ";
+		cout << "\nNhap ma sinh vien can xoa: ";
 		string idxoa;
 		cin.ignore();
 		getline(cin, idxoa);
@@ -218,7 +218,7 @@ public:
 		}
 		if (!flag)
 		{
-			cout << "\nkhong co sinh vien nao co maso nay!" << endl;
+			cout << "\nkhong co sinh vien nao co ma so nay!" << endl;
 		}
 		else
 		{
