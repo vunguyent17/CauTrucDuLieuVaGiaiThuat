@@ -118,7 +118,7 @@ void Nhap(string filename, MaTran& mt)		//Nhap ma tran tu file .txt, cac phan tu
 				{
 					int co_so_10 = 1;
 					int so_i = 0;
-					for (int i = so_s.length()-1; i >= 0; i--)
+					for (int i = (int)so_s.length()-1; i >= 0; i--)
 					{
 						so_i += dau * (int)(so_s[i] - '0') * co_so_10;
 						co_so_10 *= 10;
@@ -296,7 +296,6 @@ MaTran Hieu(MaTran A, MaTran B)
 bool KiemTraTiepTuc()
 {
 	string s;
-	
 	do
 	{
 		cout << "Tiep tuc? (y/n): ";
@@ -316,5 +315,5 @@ bool KiemTraTiepTuc()
 		}
 		
 	} while (s != "n" || s != "y");
-	
+	return false;
 }

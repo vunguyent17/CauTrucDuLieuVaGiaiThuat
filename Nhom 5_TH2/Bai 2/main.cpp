@@ -1,18 +1,104 @@
-/*Bai 2 (Slides 77 - 78) : Dung danh sach lien ket don de luu tru mot lop hoc co N sinh vien.
-Biet rang moi sinh vien bao gom cac thong tin sau :
-Ten(chuoi ky tu), Ma so sinh vien(chuoi ky tu), Diem trung binh.Hay viet ham thuc hien cac yeu cau sau :
-1. Hay khai bao cau truc du lieu dang danh sach lien ket de luu danh sach sinh vien noi tren.
-2. Nhap danh sach cac sinh vien, va them tung sinh vien vao dau danh sach(viec nhap ket thuc khi ten cua mot sinh vien bang rong)
-3. Tim mot sinh vien co trong lop hoc hay khong*/
+#include "Sinhvien.h"
+#include <iostream>
+#include <string>
 
-#include "SinhVien.h"
+using namespace std;
+
 
 int main()
 {
-	List ds_lop;
-	CreateNewList(ds_lop);
-	Nhap(ds_lop);
-	Xuat(ds_lop);
-	CoSinhVienTrongLopHoc(ds_lop);
-	return 1;
+    LIST danhSachSV;
+    NODE* p; 
+    Sinhvien data;
+    string mssv_search;
+    string control_program;
+    int control_function;
+    NhapDS(danhSachSV);
+    XuatDS(danhSachSV);
+    while (true)
+    {
+        cout << "(3) Tim sinh vien (theo MSSV)." << endl;
+        cout << "(4) Xoa 1 sinh vien (theo mssv)." << endl;
+        cout << "(5) Liet ke sinh vien co DTB >= 5." << endl;
+        cout << "(6) Xep loai va in ra thong tin sinh vien." << endl;
+        cout << "(7) Sap xep va in ra danh sach theo DTB." << endl;
+        cout << "(8) Chen 1 SV vao danh sach." << endl;
+        cout << "Chon tu 3 -> 8: ";
+        cin >> control_function;
+        switch (control_function)
+        {
+        case 3:
+            // 2.3. Tim Sinh vien
+            cout << "Nhap MSSV: ";
+            cin.ignore();
+            getline(cin, mssv_search);
+            p = TimSinhVienByMSSV(danhSachSV, mssv_search);
+            if (p != NULL)
+            {
+                cout << "(" << p->info.ten << ", "; 
+                cout << p->info.mssv << ", ";
+                cout << p->info.dtb << ")" << endl;
+            }
+            else
+            {
+                cout << "Khong ton tai." << endl;
+            }
+            break;
+        
+        case 4:
+            // 2.4. Xoa sinh vien dua tren mssv
+            cout << "Nhap MSSV: ";
+            cin.ignore();
+            getline(cin, mssv_search);
+            if (XoaMSSV(danhSachSV, mssv_search))
+            {
+                XuatDS(danhSachSV);
+            }
+            else
+            {
+                cout << "Khong ton tai." << endl;
+            }
+            break;
+        
+        case 5:
+            ListSVgreaterThan5(danhSachSV);
+            break;
+        
+        case 6:
+            XepLoaiVaList(danhSachSV);
+            break;
+        
+        case 7:
+            SapXepTheoDTB(danhSachSV);
+            XuatDS(danhSachSV);
+            break;
+        
+        case 8:
+            cin.ignore();
+            SapXepTheoDTB(danhSachSV);
+            cout << "Ho ten: ";
+            getline(cin, data.ten);
+            cout << "MSSV: ";
+            cin.ignore();
+            getline(cin, data.mssv);
+            cout << "Diem TB: ";
+            cin >> data.dtb;
+            p = CreateNode(data);
+            ChenGiuNguyenThuTu(danhSachSV, p);
+            XuatDS(danhSachSV);
+            break;
+        
+        default:
+            break;
+        
+        }
+        cout << "Tiep tuc (y/n) ? ";
+        cin >> control_program;
+        if (control_program == "n")
+        {
+            cout << "Cam on ban da su dung chuong trinh.";
+            break;
+        }
+    }
+    return 1;
 }

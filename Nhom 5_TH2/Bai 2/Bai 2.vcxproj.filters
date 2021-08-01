@@ -20,7 +20,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SinhVien.h">
+    <ClInclude Include="Sinhvien.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

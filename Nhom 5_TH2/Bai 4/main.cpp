@@ -2,8 +2,11 @@
 
 int main()
 {
+	cout << "Chuong trinh nay nhap du lieu tu 2 file inputA.txt cho ma tran A va inputB.txt cho ma tran B" << endl;
 	do
 	{
+		cout << "Chinh sua 2 file inputA.txt va inputB.txt, roi tiep tuc..." << endl;
+		system("pause");
 		MaTran A;
 		init(A);
 		Nhap("inputA.txt", A);
