@@ -1,4 +1,4 @@
-Bai TH1:
+Bai TH2:
 Câu 1:
 - Chỉnh lại câu 1-f theo yêu cầu đề bài
 - Chỉnh lại hàm Nhập (hàm inputList) theo đề bài
