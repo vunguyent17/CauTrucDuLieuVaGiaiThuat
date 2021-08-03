@@ -1,13 +1,4 @@
-﻿/*Tao mot danh sach lien ket don, biet rang thanh phan du lieu cua mot nut la mot so nguyen duong, 
-viec nhap ket thuc khi ta nhap 1 so am (so am khong thuoc danh sach). Thuc hien cac thao tac sau:
-a.	Them mot nut vao dau danh sach, vao cuoi danh sach lien ket don. Xuat danh sach da nhap.
-b.	Dem so nut trong danh sach lien ket don.
-c.	Tim mot nut co thanh phan du lieu bang X.
-d.	Xoa 1 nut dau, cuoi danh sach lien ket don.
-e.	Hay sap xep danh sach lien ket don giam dan theo thanh thanh phan du lieu.
-f.	Hay chen 1 nut co truong du lieu bang X (X nhap tu ban phim), sao cho sau khi chen danh sach van tang dan theo truong du lieu.
-*/
-#include <iostream>
+﻿#include <iostream>
 using namespace std;
 
 struct Node {

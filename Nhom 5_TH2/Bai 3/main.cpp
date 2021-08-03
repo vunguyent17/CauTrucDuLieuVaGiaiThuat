@@ -27,7 +27,7 @@ int main()
 			cout << "Nhap vao so b: ";
 			b.InputNumber();
 		}
-		cout << "\n-Chon '1'-->Tinh Tong; Chon '2'-->Tinh Tich;  Chon'3'-->Nhap lai a, b;  Chon '0'-->Ket Thuc-" << endl;
+		cout << "\nChon'1'-->Tinh Tong;\nChon'2'-->Tinh Tich;\nChon'3'-->Nhaplai a, b;\nChon'0'-->Ket Thuc" << endl;
 		cin >> k;
 		cin.ignore();
 	} while (k != '0');
