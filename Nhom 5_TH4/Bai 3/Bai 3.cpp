@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <vector>
 using namespace std;
 
 struct TNode
@@ -12,6 +11,36 @@ struct TNode
 };
 
 typedef TNode* Tree;
+
+TNode* CreateNewTNode(int x);
+void CreateTree(Tree& T);
+int ktFile(string filename);
+int Insert(Tree& T, int x);
+void Nhap(Tree& T, string filename);
+void Xuat(Tree T, int x, string s);
+void Xuat(Tree T);
+void XuatSapXepTangDan(Tree T);
+void XuatSapXepGiamDan(Tree T);
+TNode* TimNodeKhoa(Tree T, int x);
+void XuatThongTinTNode(TNode* p);
+void ThayThe(Tree& p, Tree& T);
+void XoaPhanTu(Tree& T, int x, int& flag);
+int XoaPhanTu(Tree& T, int x);
+void Menu(Tree T);
+
+int main()
+{
+    Tree T;
+    CreateTree(T);
+    cout << "Mo file input.txt de nhap cac phan tu so nguyen cua cay\n"
+        "Dong dau tien la so phan tu cua cay, cac dong tiep theo la gia tri tung phan tu.\n";
+    system("pause");
+    Nhap(T, "input.txt");
+    Xuat(T);
+    Menu(T);
+    cout << "Chuong trinh ket thuc :)" << endl;
+    return 1;
+}
 
 TNode* CreateNewTNode(int x)
 {
@@ -53,17 +82,53 @@ int Insert(Tree& T, int x)
     return 1;
 }
 
+int ktFile(string filename)
+{
+    string line;
+    ifstream myfile;
+    int n;
+    myfile.open(filename);
+    if (getline(myfile, line))
+    {
+        n = stoi(line);
+    }
+    else
+    {
+        return 0;
+    }
+    int dem = 0;
+    while (getline(myfile,line))
+    {
+        dem++;
+    }
+    return (dem == n);
+}
+
 void Nhap(Tree& T, string filename)
 {
     int n;
-    ifstream fi(filename);
-    fi >> n;
-    for (int i = 0; i < n; i++)
+    int flag = 0;
+    do
     {
-        int temp;
-    	fi >> temp;
-        Insert(T, temp);
-    }
+        if (!ktFile(filename))
+        {
+            cout << "File input.txt khong co du lieu hoac du lieu khong hop le."
+                "\nVui long mo file va kiem tra lai. Nhan bat ki phim nao de tien hanh nhap du lieu." << endl;
+            system("pause");
+        }
+        else
+        {
+            ifstream fi(filename);
+            fi >> n;
+            for (int i = 0; i < n; i++)
+            {
+                int temp;
+                fi >> temp;
+                Insert(T, temp);
+                flag = (i == n - 1 ? 1 : 0);
+            }
+        }
+    } while (flag == 0);
 }
 
 void Xuat(Tree T, int x, string s)
@@ -85,16 +150,6 @@ void Xuat(Tree T, int x, string s)
 void Xuat(Tree T)
 {
     Xuat(T, -1, "");
-}
-
-int ktTrongMang(vector<int> arr, int x)
-{
-    for (int i = 0; i < arr.size(); i++)
-    {
-        if (arr[i] == x)
-            return 1;
-    }
-    return 0;
 }
 
 void XuatSapXepTangDan(Tree T)
@@ -213,20 +268,11 @@ void XoaPhanTu(Tree& T, int x, int& flag)
     }
 }
 
-void XoaPhanTu(Tree& T, int x)
+int XoaPhanTu(Tree& T, int x)
 {
     int flag = 0;
     XoaPhanTu(T, x, flag);
-    if (flag)
-    {
-        cout << "Da xoa phan tu thanh cong!" << endl;
-        cout << "Cay hien tai:" << endl;
-        Xuat(T);
-    }
-    else
-    {
-        cout << "Khong tim thay phan tu can xoa." << endl;
-    }
+    return flag;
 }
 
 void Menu(Tree T)
@@ -236,26 +282,39 @@ void Menu(Tree T)
     do
     {
         cout << "\t=== Cac lua chon === " << endl;
-        cout << "\t1. Sap xep tang dan.\n"
-            "\t2. Sap xep giam dan.\n"
-            "\t3. Tim mot nut co khoa bang X tren cay.\n"
-            "\t4. Xoa 1 nut co khoa bang X tren cay, neu khong co thi thong bao khong co.\n"
+        cout << "\t1. Nhap cay nhi phan.\n"
+            "\t2. Sap xep tang dan.\n"
+            "\t3. Sap xep giam dan.\n"
+            "\t4. Tim mot nut co khoa bang X tren cay.\n"
+            "\t5. Xoa 1 nut co khoa bang X tren cay, neu khong co thi thong bao khong co.\n"
             "\t0. Ket thuc\n"
             "\tChon mot so tu 0 den 4: ";
         cin >> lua_chon;
         switch (lua_chon)
         {
         case 1:
+            while (T)
+            {
+                XoaPhanTu(T, T->key);
+            }
+            T = NULL;
+            cout << "Mo file input.txt de nhap cac phan tu so nguyen cua cay\n"
+                "Dong dau tien la so phan tu cua cay, cac dong tiep theo la gia tri tung phan tu.\n";
+            system("pause");
+            Nhap(T, "input.txt");
+            Xuat(T);
+            break;
+        case 2:
             cout << "Xuat cac node theo thu tu tang dan: ";
             XuatSapXepTangDan(T);
             cout << endl;
             break;
-        case 2:
+        case 3:
             cout << "Xuat cac node theo thu tu giam dan: ";
             XuatSapXepGiamDan(T);
             cout << endl;
             break;
-        case 3:             //Tim mot nut co khoa bang X tren cay.
+        case 4:             //Tim mot nut co khoa bang X tren cay.
             int x;
             cout << "Nhap khoa x can tim: ";
             cin >> x;
@@ -268,30 +327,25 @@ void Menu(Tree T)
             {
                 cout << "Khong tim thay node co gia tri " << x << " trong cay." << endl;
             }
-            
+
             break;
-        case 4:                     //Xoa 1 nut co khoa bang X tren cay, neu khong co thi thong bao khong co.
+        case 5:                     //Xoa 1 nut co khoa bang X tren cay, neu khong co thi thong bao khong co.
             int y;
             cout << "Nhap khoa y can xoa: ";
             cin >> y;
-            XoaPhanTu(T, y);
+            if (XoaPhanTu(T, y) == 1)
+            {
+                cout << "Da xoa phan tu thanh cong!" << endl;
+                cout << "Cay hien tai:" << endl;
+                Xuat(T);
+            }
+            else
+            {
+                cout << "Khong tim thay phan tu can xoa." << endl;
+            }
             break;
         default:
             break;
         }
     } while (lua_chon != 0);
-}
-
-int main()
-{
-    Tree T;
-    CreateTree(T);
-    cout << "Mo file input.txt de nhap cac phan tu so nguyen cua cay\n"
-        "Dong dau tien la so phan tu cua cay, cac dong tiep theo la gia tri tung phan tu.\n";
-    system("pause");
-    Nhap(T, "input.txt");
-    Xuat(T);
-    Menu(T);
-    cout << "Chuong trinh ket thuc :)" << endl;
-    return 1;
 }
