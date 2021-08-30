@@ -20,7 +20,5 @@ int main()
     }
     cout << "Thong ke so lan xuat hien cua tung ky tu:" << endl;
     inOrder(T);
-    /*cout << "\nCay tim kiem:" << endl;
-    Xuat(T);*/
     return 1;
 }

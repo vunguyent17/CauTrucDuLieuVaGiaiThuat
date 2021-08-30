@@ -240,24 +240,3 @@ int CountNode(Tree& t)
 	int b = CountNode(t->right);
 	return 1 + a + b;
 }
-
-//void MapPrint(Tree T, int x, string s)
-//{
-//	if (T)
-//	{
-//		++x;
-//		MapPrint(T->right, x, "/\"\"\"");
-//		for (int i = 0; i < x; i++)
-//		{
-//			cout << "\t";
-//		}
-//		cout << s << T->key;
-//		cout << endl;
-//		MapPrint(T->left, x, "\\___");
-//	}
-//}
-//
-//void MapPrint(Tree T)
-//{
-//	MapPrint(T, -1, "");
-//}

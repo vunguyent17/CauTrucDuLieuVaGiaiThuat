@@ -94,24 +94,3 @@ void postOrder(Tree Root)
         cout << "(" << Root->key.info << "," << "count=" << Root->key.count << ")\n";
     }
 }
-
-//void Xuat(Tree Root, int x, string s)
-//{
-//    if (Root)
-//    {
-//        ++x;
-//        Xuat(Root->pRight, x, "/\"\"\"");
-//        for (int i = 0; i < x; i++)
-//        {
-//            cout << "\t";
-//        }
-//        cout << s << "(" << Root->key.info << "," << "count=" << Root->key.count << ")";
-//        cout << endl;
-//        Xuat(Root->pLeft, x, "\\___");
-//    }
-//}
-//
-//void Xuat(Tree Root)
-//{
-//    Xuat(Root, -1, "");
-//}

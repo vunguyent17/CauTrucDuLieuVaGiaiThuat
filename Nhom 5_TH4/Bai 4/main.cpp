@@ -11,7 +11,6 @@ int main()
 		"\nChon'5'--> (Tinh Height);"
 		"\nChon'6'--> (Xuat Theo Level);"
 		"\nChon'7'--> (Xoa Nut);"
-		//"\nChon'8'--> (Xuat theo so do);"
 		"\nChon'0'--> (Ket Thuc)";
 	cout << "\n||||Your Choice: ";
 	Tree T;
@@ -102,18 +101,6 @@ int main()
 				T = FixBalance(T);
 			}
 		}
-		/*else if (k == 8)
-		{
-			if (T)
-			{
-				cout << "\n--------->Print tree: " << endl;
-				MapPrint(T);
-			}
-			else
-			{
-				cout << "\n--------->Tree Is Null." << endl;
-			}
-		}*/
 	} while (k != 0);
 	return 0;
 }
