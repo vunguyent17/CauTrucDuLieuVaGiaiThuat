@@ -9,7 +9,6 @@ struct Node
 	unsigned int key;
 	Node* left;
 	Node* right;
-	//Node* father;
 };
 typedef Node* Tree;
 

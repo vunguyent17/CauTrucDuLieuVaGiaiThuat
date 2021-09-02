@@ -17,14 +17,14 @@ void CreateTree(Tree& T);
 int ktFile(string filename);
 int Insert(Tree& T, int x);
 void Nhap(Tree& T, string filename);
-void Xuat(Tree T, int x, string s);
+void Xuat(Tree T, int x, string s);     //Ho tro cho ham Xuat(Tree T)
 void Xuat(Tree T);
 void XuatSapXepTangDan(Tree T);
 void XuatSapXepGiamDan(Tree T);
 TNode* TimNodeKhoa(Tree T, int x);
 void XuatThongTinTNode(TNode* p);
 void ThayThe(Tree& p, Tree& T);
-void XoaPhanTu(Tree& T, int x, int& flag);
+void XoaPhanTu(Tree& T, int x, int& flag);  //Ho tro cho ham XoaPhanTu(Tree& T, int x)
 int XoaPhanTu(Tree& T, int x);
 void Menu(Tree T);
 
@@ -36,6 +36,7 @@ int main()
         "Dong dau tien la so phan tu cua cay, cac dong tiep theo la gia tri tung phan tu.\n";
     system("pause");
     Nhap(T, "input.txt");
+    cout << "Da nhap xong du lieu vao cay. So do cay hien tai:" << endl;
     Xuat(T);
     Menu(T);
     cout << "Chuong trinh ket thuc :)" << endl;
@@ -131,7 +132,7 @@ void Nhap(Tree& T, string filename)
     } while (flag == 0);
 }
 
-void Xuat(Tree T, int x, string s)
+void Xuat(Tree T, int x, string s)      //x de luu so tab can cach ra de tao so do, s de the hien moi quan he node trai va node phai
 {
     if (T)
     {
@@ -234,7 +235,7 @@ void ThayThe(Tree& p, Tree& T)
         T = T->pLeft;
     }
 }
-void XoaPhanTu(Tree& T, int x, int& flag)
+void XoaPhanTu(Tree& T, int x, int& flag)   // flag de danh dau chuong trinh da xoa phan tu chua
 {
     if (T)
     {
@@ -283,10 +284,11 @@ void Menu(Tree T)
     {
         cout << "\t=== Cac lua chon === " << endl;
         cout << "\t1. Nhap cay nhi phan.\n"
-            "\t2. Sap xep tang dan.\n"
-            "\t3. Sap xep giam dan.\n"
-            "\t4. Tim mot nut co khoa bang X tren cay.\n"
-            "\t5. Xoa 1 nut co khoa bang X tren cay, neu khong co thi thong bao khong co.\n"
+            "\t2. Xuat cay dang so do\n"
+            "\t3. Xuat sap xep tang dan.\n"
+            "\t4. Xuat sap xep giam dan.\n"
+            "\t5. Tim mot nut co khoa bang X tren cay.\n"
+            "\t6. Xoa 1 nut co khoa bang X tren cay, neu khong co thi thong bao khong co.\n"
             "\t0. Ket thuc\n"
             "\tChon mot so tu 0 den 4: ";
         cin >> lua_chon;
@@ -302,19 +304,30 @@ void Menu(Tree T)
                 "Dong dau tien la so phan tu cua cay, cac dong tiep theo la gia tri tung phan tu.\n";
             system("pause");
             Nhap(T, "input.txt");
+            cout << "Da nhap xong du lieu vao cay. So do cay hien tai:" << endl;
             Xuat(T);
             break;
         case 2:
+            if (T)
+            {
+                Xuat(T);
+            }
+            else
+            {
+                cout << "Cay khong co du lieu. Xin lua chon 1 de nhap du lieu vao cay" << endl;
+            }
+            break;
+        case 3:
             cout << "Xuat cac node theo thu tu tang dan: ";
             XuatSapXepTangDan(T);
             cout << endl;
             break;
-        case 3:
+        case 4:
             cout << "Xuat cac node theo thu tu giam dan: ";
             XuatSapXepGiamDan(T);
             cout << endl;
             break;
-        case 4:             //Tim mot nut co khoa bang X tren cay.
+        case 5:             //Tim mot nut co khoa bang X tren cay.
             int x;
             cout << "Nhap khoa x can tim: ";
             cin >> x;
@@ -329,9 +342,9 @@ void Menu(Tree T)
             }
 
             break;
-        case 5:                     //Xoa 1 nut co khoa bang X tren cay, neu khong co thi thong bao khong co.
+        case 6:                     //Xoa 1 nut co khoa bang X tren cay, neu khong co thi thong bao khong co.
             int y;
-            cout << "Nhap khoa y can xoa: ";
+            cout << "Nhap khoa can xoa: ";
             cin >> y;
             if (XoaPhanTu(T, y) == 1)
             {
